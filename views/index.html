@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ANGULAR BANKING APP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="main.js" charset="utf-8"></script>
+</head>
+<body ng-app='myApp' ng-controller='mainCtrl'>
+    <div class="container">
+        <div>
+            <h3>New Transaction</h1>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" ng-model = "newTransaction.name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" ng-model ="newTransaction.email">
+            </div>
+            <button class="btn btn-primary" ng-click="addTransaction()">Add Transaction</button>
+        </div>
+    </div>
+
+    <div>
+      <div class="form-group">
+          <label>Search</label>
+          <input type="text" class="form-control" placeholder="Search" ng-model = "searchFilter">
+      </div>
+    </div>
+
+    <div>
+      <div class="form-group">
+          <label>Edit</label>
+          <input type="text" class="form-control" ng-model = "editTransaction">
+          <button class="btn btn-primary" ng-click="closeModal()">Cancel</button>
+          <button class="btn btn-primary" ng-click="addNewTransaction()">Save</button>
+      </div>
+    </div>
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='transaction in transactions  | filter:searchFilter | orderBy:"name" track by $index'>
+          <td>{{transaction.name}}</td>
+          <td>{{transaction.email}}</td>
+          <td>
+            <td>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="removeTransaction($index)">
+            <span class="glyphicon glyphicon-remove"></span>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="editTransaction($index)">
+            <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            </td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>
