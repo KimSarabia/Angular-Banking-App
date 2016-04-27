@@ -8,8 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="main.js" charset="utf-8"></script>
 </head>
+
 <body ng-app='myApp' ng-controller='mainCtrl'>
     <div class="container">
+
+<!-- ADD SECTION START -->
         <div>
             <h3>New Transaction</h1>
             <div class="form-group">
@@ -17,35 +20,44 @@
                 <input type="text" class="form-control" placeholder="Name" ng-model = "newTransaction.name">
             </div>
             <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" ng-model ="newTransaction.email">
+                <label>Amount</label>
+                <input type="text" class="form-control" ng-model ="newTransaction.amount">
             </div>
             <button class="btn btn-primary" ng-click="addTransaction()">Add Transaction</button>
         </div>
-    </div>
 
+<!-- ADD SECTION END -->
+
+<!-- SEARCH SECTION START -->
     <div>
       <div class="form-group">
           <label>Search</label>
           <input type="text" class="form-control" placeholder="Search" ng-model = "searchFilter">
       </div>
     </div>
+<!-- SEARCH SECTION END -->
 
+<!-- EDIT SECTION START -->
     <div>
-      <div class="form-group">
-          <label>Edit</label>
-          <input type="text" class="form-control" ng-model = "editTransaction">
-          <button class="btn btn-primary" ng-click="closeModal()">Cancel</button>
-          <button class="btn btn-primary" ng-click="addNewTransaction()">Save</button>
-      </div>
+      <h1>Edit Transaction</h1>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" placeholder="Name" ng-model="transactionToEdit.name">
+        </div>
+        <div class="form-group">
+          <label>Amount</label>
+          <input type="text" class="form-control" placeholder="Amount" ng-model="transactionToEdit.amount">
+        </div>
     </div>
+  </div>
+<!-- EDIT SECTION END -->
 
-
+<!-- TABLE SECTION START -->
     <table class="table">
       <thead>
         <tr>
           <th>Name</th>
-          <th>Email</th>
+          <th>Amount</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
@@ -53,7 +65,7 @@
       <tbody>
         <tr ng-repeat='transaction in transactions  | filter:searchFilter | orderBy:"name" track by $index'>
           <td>{{transaction.name}}</td>
-          <td>{{transaction.email}}</td>
+          <td>{{transaction.amount}}</td>
           <td>
             <td>
             <button type="button" class="btn btn-danger btn-sm" ng-click="removeTransaction($index)">
@@ -66,5 +78,8 @@
         </tr>
       </tbody>
     </table>
+<!-- TABLE SECTION START -->
+
+
 </body>
 </html>

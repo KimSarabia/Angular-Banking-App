@@ -21,12 +21,14 @@ app.controller('mainCtrl', function($scope){
     $scope.editTransaction = transaction => {
       editingIndex = $scope.transactions.indexOf(transaction);
       $scope.transactionToEdit = angular.copy(transaction);
-
     };
 
     $scope.saveEdit = () => {
       $scope.transactions[editingIndex] = $scope.transactionToEdit;
-      $scope.transactionToEdit = {};
+      $scope.transactionToEdit = null;
     };
 
+    $scope.cancelEdit = () => {
+      $scope.transactionToEdit = null;
+    }
 });
