@@ -92,7 +92,7 @@
         </div>
       </div>
       <!-- ADD SECTION END -->
-      
+
 
     <div ng-if="transactionToEdit" class="container">
       <!-- EDIT SECTION START -->
@@ -128,7 +128,7 @@
 
     <div class="container">
         <!-- BALANCE START  -->
-        <h1> Your balance is {{total}} </h1>
+        <h1> Your balance is {{ showDepositTotal() - showWithdrawalTotal() }}</h1>
         <!-- BALANCE END -->
         <!-- TABLE SECTION START -->
         <table class="table">
@@ -164,6 +164,10 @@
                 </tr>
             </tbody>
         </table>
+        <h1> Your deposit total is {{ showDepositTotal() }}</h1>
+        <h1> Your withdrawal total is {{ showWithdrawalTotal() }}</h1>
+
+
         <!-- TABLE SECTION END -->
 
 
