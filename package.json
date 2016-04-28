@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KimSarabia/angular-fun.git"
+    "url": "git+https://github.com/KimSarabia/angular-banking-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KimSarabia/angular-fun/issues"
+    "url": "https://github.com/KimSarabia/angular-banking-app/issues"
   },
-  "homepage": "https://github.com/KimSarabia/angular-fun#readme",
+  "homepage": "https://github.com/KimSarabia/angular-banking-app#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",

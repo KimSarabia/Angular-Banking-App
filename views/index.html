@@ -38,7 +38,7 @@
     </nav>
     <div class="jumbotron">
         <div class="container">
-            <h1>Banking your way</h1>
+            <h1>Your Money, Your Way</h1>
             <h3>Join us today for more</h3>
             <p><a class="btn btn-danger btn-md" href="">TRY IT NOW</a></p>
             <div class="arrow">
@@ -54,12 +54,14 @@
             <div class="line"></div>
             <!-- SEARCH SECTION START -->
             <div>
+             <div ng-if="!transactionToEdit">
               <div class="container">
                 <div class="form-group">
                     <label>Search</label>
                     <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
                 </div>
               </div>
+             </div>
             </div>
             <!-- SEARCH SECTION END -->
         </div>
@@ -128,7 +130,7 @@
 
     <div class="container">
         <!-- BALANCE START  -->
-        <h1> Your balance is {{ showDepositTotal() - showWithdrawalTotal() }}</h1>
+        <h1> Your balance is $ {{ showDepositTotal() - showWithdrawalTotal() }}</h1>
         <!-- BALANCE END -->
         <!-- TABLE SECTION START -->
         <table class="table">
@@ -164,10 +166,8 @@
                 </tr>
             </tbody>
         </table>
-        <h1> Your deposit total is {{ showDepositTotal() }}</h1>
-        <h1> Your withdrawal total is {{ showWithdrawalTotal() }}</h1>
-
-
+        <h5> Deposit Total: {{ showDepositTotal() }}</h5>
+        <h5> Withdrawal Total: {{ showWithdrawalTotal() }}</h5>
         <!-- TABLE SECTION END -->
 
 

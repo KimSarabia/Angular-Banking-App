@@ -46,16 +46,16 @@ app.controller('mainCtrl', function($scope) {
         $scope.transactionToEdit = angular.copy(transaction);
     };
 
-    $scope.saveEdit = transaction => {
+    $scope.saveEdit = () => {
         $scope.transactions[editingIndex] = $scope.transactionToEdit;
         $scope.transactionToEdit = null;
     };
 
-    $scope.cancelEdit = transaction => {
+    $scope.cancelEdit = () => {
         $scope.transactionToEdit = null;
     };
 
-    $scope.showDepositTotal = function() {
+    $scope.showDepositTotal = () => {
         var total = 0;
         for (var i = 0; i < $scope.transactions.length; i++) {
             var item = $scope.transactions[i];
@@ -64,7 +64,7 @@ app.controller('mainCtrl', function($scope) {
         return total;
     };
 
-    $scope.showWithdrawalTotal = function() {
+    $scope.showWithdrawalTotal = () => {
         var total = 0;
         for (var i = 0; i < $scope.transactions.length; i++) {
             var item = $scope.transactions[i];
@@ -72,6 +72,5 @@ app.controller('mainCtrl', function($scope) {
         }
         return total;
     };
-
 
 });
