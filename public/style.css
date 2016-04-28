@@ -46,7 +46,7 @@ nav.menu .nav-item .nav-link:hover p {
   border-radius: 0 !important;
   text-align: center;
   position: relative;
-  height: 600px;
+  height: 500px;
   background: url("https://images.unsplash.com/photo-1453282716202-de94e528067c?crop=entropy&fit=crop&fm=jpg&h=625&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1325") center no-repeat;
   background-size: cover;
 }

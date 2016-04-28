@@ -15,140 +15,159 @@
 </head>
 
 <body ng-app='myApp' ng-controller='mainCtrl'>
-  <nav class="navbar navbar-light navbar-fixed-top bg-primary menu" role='navigation'>
-    <div class="container">
-      <a class="navbar-brand pull-left" href="#">Banking On Me</a>
-    <ul class="navbar-nav nav pull-right">
-     <li class="nav-item"><a class="nav-link" href="#"><p>Home</p><p class="second">Home</p></a></li>
-     <li class="nav-item"><a class="nav-link" href="#"><p>Join</p><p class="second red">Join</p></a></li></a></li>
-    </ul>
-     </div>
-  </nav>
+    <nav class="navbar navbar-light navbar-fixed-top bg-primary menu" role='navigation'>
+        <div class="container">
+            <a class="navbar-brand pull-left" href="#">Banking On Me</a>
+            <ul class="navbar-nav nav pull-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <p>Home</p>
+                        <p class="second">Home</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <p>Join</p>
+                        <p class="second red">Join</p>
+                    </a>
+                </li>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="jumbotron">
+        <div class="container">
+            <h1>Banking your way</h1>
+            <h3>Join us today for more</h3>
+            <p><a class="btn btn-danger btn-md" href="">TRY IT NOW</a></p>
+            <div class="arrow">
+                <a href="#intro"><i class="fa fa-chevron-down"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="redline"></div>
+    <div id="intro">
+        <div class="container">
+            <h2>Welcome to Banking on Me</h2>
+            <p>You can manage your purchases here.</p>
+            <div class="line"></div>
+            <!-- SEARCH SECTION START -->
+            <div>
+              <div class="container">
+                <div class="form-group">
+                    <label>Search</label>
+                    <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
+                </div>
+              </div>
+            </div>
+            <!-- SEARCH SECTION END -->
+        </div>
+     </div>
+        <!-- ADD SECTION START -->
       <div class="container">
-        <h1>Banking your way</h1>
-        <h3>Join us today for more</h3>
-        <p><a class="btn btn-danger btn-md" href="">SIGN UP</a></p>
-        <div class="arrow">
-          <a href="#intro"><i class="fa fa-chevron-down"></i></a>
+        <div ng-if="!transactionToEdit">
+            <h1>New Transaction</h1>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" ng-model="newTransaction.name">
+            </div>
+            <div class="form-group">
+                <label>Deposit</label>
+                <input type="text" class="form-control" ng-model="newTransaction.deposit">
+            </div>
+            <div class="form-group">
+                <label>Withdrawal</label>
+                <input type="text" class="form-control" ng-model="newTransaction.withdrawal">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-control" ng-model="newTransaction.date">
+            </div>
+            <div class="form-group">
+                <label>Notes</label>
+                <input type="text" class="form-control" ng-model="newTransaction.note">
+            </div>
+            <button class="btn btn-primary" ng-click="addTransaction()">Add Transaction</button>
         </div>
       </div>
-    </div>
-<div class="redline"></div>
-<div id="intro">
-<div class="container">
-  <h2>Welcome to Banking on Me</h2>
-  <p>You can manage your purchases here.</p>
-  <div class="line"></div>
-  <!-- ADD SECTION START -->
-          <div>
-              <h1>New Transaction</h1>
-              <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" class="form-control" placeholder="Name" ng-model = "newTransaction.name">
-              </div>
-              <div class="form-group">
-                  <label>Amount</label>
-                  <input type="text" class="form-control" ng-model ="newTransaction.amount">
-              </div>
-              <div class="form-group">
-                  <label>Date</label>
-                  <input type="date" class="form-control" ng-model ="newTransaction.date">
-              </div>
-              <div class="form-group">
-                  <label>Notes</label>
-                  <input type="text" class="form-control" ng-model ="newTransaction.note">
-              </div>
-              <button class="btn btn-primary" ng-click="addTransaction()">Add Transaction</button>
-          </div>
-  <!-- ADD SECTION END -->
+      <!-- ADD SECTION END -->
+      
 
-  </div>
-</div>
+    <div ng-if="transactionToEdit" class="container">
+      <!-- EDIT SECTION START -->
+      <div>
+          <h1>Edit Transaction</h1>
+          <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Name" ng-model="transactionToEdit.name">
+          </div>
+          <div class="form-group">
+              <label>Deposit</label>
+              <input type="number" class="form-control" placeholder="Deposit" ng-model="transactionToEdit.deposit">
+          </div>
+          <div class="form-group">
+              <label>Withdrawal</label>
+              <input type="number" class="form-control" placeholder="Withdrawal" ng-model="transactionToEdit.withdrawal">
+          </div>
+          <div class="form-group">
+              <label>Date</label>
+              <input type="date" class="form-control" placeholder="Date" ng-model="transactionToEdit.date">
+          </div>
+          <div class="form-group">
+              <label>Notes</label>
+              <input type="text" class="form-control" placeholder="Note" ng-model="transactionToEdit.note">
+          </div>
+          <button class="btn btn-default" ng-click="cancelEdit()"> Cancel</button>
+          <button class="btn btn-primary" ng-click="saveEdit()">Save</button>
+      </div>
+      <!-- EDIT SECTION END -->
+    </div>
+
+
 
     <div class="container">
+        <!-- BALANCE START  -->
+        <h1> Your balance is {{total}} </h1>
+        <!-- BALANCE END -->
+        <!-- TABLE SECTION START -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th ng-click='sortBy("name")'>Name</th>
+                    <th ng-click='sortBy("deposit")'>Deposit</th>
+                    <th ng-click='sortBy("withdrawal")'>Withdrawal</th>
+
+                    <th ng-click='sortBy("date")'>Date</th>
+                    <th ng-click='sortBy("note")'>Notes</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='transaction in transactions  | filter:searchFilter | orderBy:"name" track by $index'>
+                    <td>{{transaction.name}}</td>
+                    <td>{{transaction.deposit}}</td>
+                    <td>{{transaction.withdrawal}}</td>
+                    <td>{{transaction.date}}</td>
+                    <td>{{transaction.note}}</td>
+                    <td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="removeTransaction(transaction)"><span class="glyphicon glyphicon-remove"></span></button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="editTransaction(transaction)">Edit</button>
+                        </td>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- TABLE SECTION END -->
 
 
-<!-- SEARCH SECTION START -->
-    <div>
-      <div class="form-group">
-          <label>Search</label>
-          <input type="text" class="form-control" placeholder="Search" ng-model = "searchFilter">
-      </div>
     </div>
-<!-- SEARCH SECTION END -->
-  </div>
-
-<div class="container">
-  <!-- BALANCE START  -->
-  <h1> Your balance is {{total}} </h1>
-  <!-- BALANCE END -->
-  <!-- TABLE SECTION START -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th ng-click='sortBy("name")'>Name</th>
-            <th ng-click='sortBy("amount")'>Amount</th>
-            <th ng-click='sortBy("date")'>Date</th>
-            <th ng-click='sortBy("note")'>Notes</th>
-            <th>Delete</th>
-            <th>Edit</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat='transaction in transactions  | filter:searchFilter | orderBy:"name" track by $index'>
-            <td>{{transaction.name}}</td>
-            <td>{{transaction.amount}}</td>
-            <td>{{transaction.date}}</td>
-            <td>{{transaction.note}}</td>
-            <td>
-              <td>
-              <button type="button" class="btn btn-danger btn-sm" ng-click="removeTransaction($index)"><span class="glyphicon glyphicon-remove"></span></button>
-              </td>
-              <td>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-              </td>
-
-            </td>
-          </tr>
-        </tbody>
-      </table>
-  <!-- TABLE SECTION END -->
-
-<!-- MODAL START  -->
-  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <!-- EDIT SECTION START -->
-            <div>
-              <h1>Edit Transaction</h1>
-                <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" class="form-control" placeholder="Name" ng-model="transactionToEdit.name">
-                </div>
-                <div class="form-group">
-                  <label>Amount</label>
-                  <input type="number" class="form-control" placeholder="Amount" ng-model="transactionToEdit.amount">
-                </div>
-                <div class="form-group">
-                  <label>Date</label>
-                  <input type="date" class="form-control" placeholder="Date" ng-model="transactionToEdit.date">
-                </div>
-                <div class="form-group">
-                  <label>Notes</label>
-                  <input type="text" class="form-control" placeholder="Note" ng-model="transactionToEdit.note">
-                </div>
-                <button class="btn btn-default" ng-click="cancelEdit()"> Cancel</button>
-                <button class="btn btn-primary" ng-click="saveEdit()">Save</button>
-            </div>
-            <!-- EDIT SECTION END -->
-      </div>
-    </div>
-  </div>
-
-<!-- MODAL END -->
-</div>
 </body>
 
 </html>
