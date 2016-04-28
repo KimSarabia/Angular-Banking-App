@@ -6,17 +6,20 @@ app.controller('mainCtrl', function($scope){
   console.log('mainCtrl!');
 
   $scope.transactions = [];
+
     $scope.addTransaction = () => {
       $scope.transactions.push($scope.newTransaction);
-      $scope.newTransaction = {};
+      $scope.newTransaction = {}; //clearing the inputs
     };
+
     $scope.removeTransaction = transaction => {
-      $scope.transactions.push($scope.newTransaction);
-      $scope.newTransaction = {};
+      var index = $scope.transactions.indexOf(transaction);
       $scope.transactions.splice(index,1);
     };
 
-    var editingIndex;
+    $scope.sortBy = order => {
+      $scope.sortOrder = order;
+    };
 
     $scope.editTransaction = transaction => {
       editingIndex = $scope.transactions.indexOf(transaction);
@@ -30,5 +33,5 @@ app.controller('mainCtrl', function($scope){
 
     $scope.cancelEdit = () => {
       $scope.transactionToEdit = null;
-    }
+    };
 });
